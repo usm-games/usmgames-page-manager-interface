@@ -1,0 +1,10 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+
+html, body {
+  height: 100%;
+  background: transparent;
+}
+
+html {
+  background-image: url("~assets/imgs/background.png");
+}

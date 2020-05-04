@@ -1,0 +1,101 @@
+<form [formGroup]="challengeForm" (ngSubmit)="submit()">
+  <div class="row">
+    <div class="col-6">
+      <label for="title">Título</label>
+      <input type="text" id="title" class="form-control" formControlName="title" required>
+      <div class="row">
+        <div class="col-8">
+          <div class="text-sm-left text-danger" *ngIf="title.invalid && (title.dirty || title.touched)">
+            <span *ngIf="title.errors.required">Este campo es obligatorio</span>
+            <span *ngIf="title.errors.minlength">El título debe ser de mínimo {{title.errors.minlength.requiredLength}}
+              carácteres</span>
+            <span *ngIf="title.errors.maxlength">El título debe ser de máximo {{title.errors.maxlength.requiredLength}}
+              carácteres</span>
+          </div>
+        </div>
+        <div class="col-4">
+          <p
+            class="text-sm-right w-100"
+            [ngClass]="title.errors?.maxlength ? 'text-danger' : 'text-muted'"
+          >{{title.value.length}} / 40</p>
+        </div>
+      </div>
+
+      <label for="description">¿Qué hay que hacer para este desafío?</label>
+      <textarea id="description" class="form-control" formControlName="description" required></textarea>
+      <div class="row">
+        <div class="col-8">
+          <div class="text-danger" *ngIf="description.invalid && (description.dirty || description.touched)">
+            <span *ngIf="description.errors.required">Este campo es obligatorio</span>
+            <span *ngIf="description.errors.maxlength">La descripción debe ser de máximo 255 carácteres</span>
+          </div>
+        </div>
+        <div class="col-4">
+          <p
+            class="text-sm-right w-100"
+            [ngClass]="description.errors?.maxlength ? 'text-danger' : 'text-muted'"
+          >{{description.value.length}} / 255</p>
+        </div>
+      </div>
+
+      <label for="type">Tipo de Desafío</label>
+      <select class="form-control" id="type" name="type" formControlName="type">
+        <option *ngFor="let type_ of types" [value]="type_.slug">{{type_.name}}</option>
+      </select>
+      <div class="row">
+        <div class="col-12">
+          <div class="text-danger" *ngIf="type.invalid && (type.dirty || type.touched)">
+            <span *ngIf="type.errors.required">Debes elegir un tipo de desafío</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="row">
+        <div class="col-8">
+          <label for="description">Requisitos</label>
+        </div>
+        <div class="col-4">
+          <button class="btn rounded-circle btn-primary" [disabled]="requirements.length >= 4"
+                  (click)="addRequirement()">+
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12" formArrayName="requirements">
+          <div class="col-12 text-danger mb-4" *ngIf="requirements.invalid && (requirements.dirty || requirements.touched)">
+            <span>No pueden quedar campos de requisitos vacíos</span>
+          </div>
+          <div *ngFor="let _ of requirements.controls; index as idx" class="row">
+            <div class="col-10">
+              <label style="width: 100%;">
+                <textarea style="resize: none" [formControlName]="idx" class="form-control" placeholder="Subir un..."
+                          required></textarea>
+              </label>
+            </div>
+            <div class="col-2">
+              <button class="btn bg-transparent" (click)="removeRequirement(idx)">&times;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-12 text-center">
+      <button [disabled]="challengeForm.invalid" class="btn btn-primary" style="width: 90%" type="submit">Crear
+        desafío
+      </button>
+    </div>
+  </div>
+</form>
+<ng-template #loading>
+  <div class="row text-center">
+    <div class="col-12">
+      <div class="spinner-border text-danger"></div>
+    </div>
+    <div class="col-12">
+      <span class="text-danger">Cargando...</span>
+    </div>
+  </div>
+</ng-template>

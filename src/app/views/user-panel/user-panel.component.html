@@ -1,0 +1,60 @@
+<div *ngIf="user$ | async as user; else loading">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="card bg-dark mb-3">
+        <div class="card-body">
+          <h4>{{user.display_name}} ({{user.roles.join(', ')}})</h4>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-12">
+        <div class="alert alert-info">
+          Esta aplicación se encuentra en estado Alfa. Si encuentra un error o tiene alguna consulta, por favor no dude
+          en poner un issue en nuestro <a href="https://github.com/usm-games/usmgames-page-manager/issues" target="_blank">repositorio de GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngIf="user.roles.includes('administrator')" class="col-md-3 text-center">
+        <button type="button" class="btn btn-primary" (click)="openModal(createChallenge)">
+          Crear Desafío
+        </button>
+      </div>
+      <div *ngIf="user.roles.includes('administrator')" class="col-md-3 text-center">
+        <button type="button" class="btn btn-primary">
+          Evaluar desafíos
+        </button>
+      </div>
+      <div [className]="(user.roles.includes('administrator') ? 'col-md-3' : 'col-md-6') + ' text-center'">
+        <button type="button" class="btn btn-primary">
+          Participar en desafío
+        </button>
+      </div>
+      <div [className]="(user.roles.includes('administrator') ? 'col-md-3' : 'col-md-6') + ' text-center'">
+        <button type="button" class="btn btn-primary" (click)="logout()">
+          Cerrar Sesión
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #loading>
+  <div class="row mt-2">
+    <div class="col-12 text-center">
+      <div class="spinner-border text-danger"></div>
+      <div class="text-danger">Cargando usuario...</div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #createChallenge let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Crear Desafío</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('cross')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-challenge-create-form (submitted)="modal.dismiss('submitted')"></app-challenge-create-form>
+  </div>
+</ng-template>

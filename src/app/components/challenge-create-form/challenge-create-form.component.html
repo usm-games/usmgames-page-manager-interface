@@ -56,9 +56,8 @@
           <label for="description">Requisitos</label>
         </div>
         <div class="col-4">
-          <button class="btn rounded-circle btn-primary" [disabled]="requirements.length >= 4"
-                  (click)="addRequirement()">+
-          </button>
+          <button class="btn rounded-circle btn-primary" type="button" [disabled]="requirements.length >= 4 || loading"
+                  (click)="addRequirement()">+</button>
         </div>
       </div>
       <div class="row">
@@ -74,7 +73,7 @@
               </label>
             </div>
             <div class="col-2">
-              <button class="btn bg-transparent" (click)="removeRequirement(idx)">&times;</button>
+              <button type="button" class="btn bg-transparent" [disabled]="loading" (click)="removeRequirement(idx)">&times;</button>
             </div>
           </div>
         </div>
@@ -83,19 +82,10 @@
   </div>
   <div class="row mt-5">
     <div class="col-12 text-center">
-      <button [disabled]="challengeForm.invalid" class="btn btn-primary" style="width: 90%" type="submit">Crear
-        desafío
+      <button [disabled]="challengeForm.invalid || loading" class="btn btn-primary" style="width: 90%" type="submit">
+        <div *ngIf="loading; else waiting" class="spinner-border text-light"></div>
+        <ng-template #waiting><span>Crear desafío</span></ng-template>
       </button>
     </div>
   </div>
 </form>
-<ng-template #loading>
-  <div class="row text-center">
-    <div class="col-12">
-      <div class="spinner-border text-danger"></div>
-    </div>
-    <div class="col-12">
-      <span class="text-danger">Cargando...</span>
-    </div>
-  </div>
-</ng-template>

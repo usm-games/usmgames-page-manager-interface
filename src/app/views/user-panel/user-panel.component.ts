@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {User} from '../../models/user.model';
 import {catchError} from 'rxjs/operators';
 import {ForbiddenError} from '../../errors/forbidden-error';
@@ -20,7 +20,8 @@ export class UserPanelComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private modalService: NgbModal
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.user$ = this.auth.me()
@@ -33,6 +34,10 @@ export class UserPanelComponent implements OnInit {
 
   openModal(content) {
     return this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'xl'}).result;
+  }
+
+  closeModal(modal: NgbModalRef) {
+    modal.dismiss();
   }
 
   logout() {

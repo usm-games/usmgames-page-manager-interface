@@ -50,11 +50,11 @@
 <ng-template #createChallenge let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Crear Desafío</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('cross')">
+    <button type="button" class="close" aria-label="Close" (click)="closeModal(modal)">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <app-challenge-create-form (submitted)="modal.dismiss('submitted')"></app-challenge-create-form>
+    <app-challenge-create-form (submitted)="closeModal(modal)"></app-challenge-create-form>
   </div>
 </ng-template>

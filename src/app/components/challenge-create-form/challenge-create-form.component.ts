@@ -63,7 +63,6 @@ export class ChallengeCreateFormComponent implements OnInit {
   submit() {
     const challenge = this.challengeForm.value;
     this.loading = true;
-    console.log(':(');
     return this.challenges.create(challenge)
       .then(() => this.submitted.emit())
       .catch(() => this.loading = false);

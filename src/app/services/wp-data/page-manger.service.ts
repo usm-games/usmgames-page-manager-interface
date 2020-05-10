@@ -31,7 +31,6 @@ export class PageMangerService {
   private readonly url = 'https://usmgpm.herokuapp.com/api';
 
   private static processError(error: HttpErrorResponse): AppError {
-    console.log(error.error);
     if (error.status === 404) {
       return new NotFoundError(`Could not find this resource: ${error.url}`, error);
     } else if (error.status === 400) {

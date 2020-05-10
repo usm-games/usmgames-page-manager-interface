@@ -3,6 +3,7 @@ import {Challenge, ChallengeType} from '../../models/challenge.model';
 import {PageMangerService} from './page-manger.service';
 import {Observable} from 'rxjs';
 import {Submission} from '../../models/submission.model';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +18,11 @@ export class ChallengeService {
   constructor(private pm: PageMangerService) { }
 
   create(challenge: Challenge): Promise<Challenge> {
-    challenge.notify = false;
+    challenge.notify = environment.production;
     return this.pm.post('challenges', challenge);
   }
 
   submit(submission: Submission, challenge: Challenge): Promise<Submission> {
-    console.log(submission);
     return this.pm.post(`challenges/${challenge.id}/submissions`, submission);
   }
 

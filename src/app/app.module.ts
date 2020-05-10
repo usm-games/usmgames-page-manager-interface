@@ -13,6 +13,15 @@ import {RedirectToPanel} from './guards/injectable/redirect-to-panel';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { ChallengesListComponent } from './components/challenges-list/challenges-list.component';
 import { ChallengeCreateFormComponent } from './components/challenge-create-form/challenge-create-form.component';
+import { ChallengeSubmissionComponent } from './views/challenge-submission/challenge-submission.component';
+import { SubmissionFormComponent } from './components/submission-form/submission-form.component';
+import { ChallengeSubmissionFormComponent } from './components/challenge-submission-form/challenge-submission-form.component';
+import { ChallengeListGroupComponent } from './components/challenge-list-group/challenge-list-group.component';
+import { ChallengeDisplayComponent } from './components/challenge-display/challenge-display.component';
+import { ChallengeEvaluationComponent } from './views/challenge-evaluation/challenge-evaluation.component';
+import { SubmissionListGroupComponent } from './components/submission-list-group/submission-list-group.component';
+import { SubmissionsListComponent } from './components/submissions-list/submissions-list.component';
+import { ChallengeListGroupItemComponent } from './components/challenge-list-group-item/challenge-list-group-item.component';
 
 const routes: Routes = [
   {path: 'panel', component: UserPanelComponent, canActivate: [AuthGuard]},
@@ -27,7 +36,16 @@ const routes: Routes = [
     UserPanelComponent,
     LoginCardComponent,
     ChallengesListComponent,
-    ChallengeCreateFormComponent
+    ChallengeCreateFormComponent,
+    ChallengeSubmissionComponent,
+    SubmissionFormComponent,
+    ChallengeSubmissionFormComponent,
+    ChallengeListGroupComponent,
+    ChallengeDisplayComponent,
+    ChallengeEvaluationComponent,
+    SubmissionListGroupComponent,
+    SubmissionsListComponent,
+    ChallengeListGroupItemComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,23 @@
+<div class="d-flex w-100 justify-content-between">
+  <h5 class="mb-1 unselectable">{{challenge.title}}</h5>
+  <small> Publicado el {{published | date}}</small>
+</div>
+<small class="text-muted">¿Qué hay que hacer?</small>
+<p class="mb-1 unselectable">{{challenge.description}}</p>
+<div>
+  <small class="text-muted">Requisitos</small>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item unselectable" *ngFor="let requirement of challenge.requirements">
+      {{requirement.description}}
+    </li>
+  </ul>
+  <small class="text-muted">Evidencia</small>
+  <ul class="list-group list-group-flush limit-scroll">
+    <li class="list-group-item unselectable" *ngFor="let evidence of evidences">
+      <span *ngIf="evidence.description !== '' && !isValidURL(evidence.url)">{{evidence.description}}</span>
+      <a *ngIf="evidence.description !== '' && isValidURL(evidence.url)" [href]="evidence.url" target="_blank">{{evidence.description}}</a>
+      <span class="text-muted text-sm-center" *ngIf="evidence.description === ''">Evidencia sin descripción</span>
+      <span class="text-sm-center text-danger" *ngIf="!isValid(evidence)">*</span>
+    </li>
+  </ul>
+</div>

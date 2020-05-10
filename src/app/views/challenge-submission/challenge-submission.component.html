@@ -1,0 +1,8 @@
+<div class="row" *ngIf="challenge; else waitingChallenge">
+  <div class="col-12">
+    <app-challenge-submission-form (submitted)="submitted.emit()" [challenge]="challenge"></app-challenge-submission-form>
+  </div>
+</div>
+<ng-template #waitingChallenge>
+  <app-challenges-list [interactive]="true" (selected)="challenge = $event"></app-challenges-list>
+</ng-template>

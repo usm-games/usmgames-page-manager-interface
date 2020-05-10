@@ -11,4 +11,5 @@ export interface Challenge {
   description: string;
   requirements: string[] | ChallengeRequirement[];
   notify?: boolean;
+  published: string;
 }

@@ -1,0 +1,8 @@
+.challenge-list {
+  height: 60vh;
+  overflow-y: auto;
+}
+
+a.list-group-item {
+  cursor: pointer;
+}

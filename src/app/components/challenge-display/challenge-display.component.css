@@ -1,0 +1,4 @@
+.limit-scroll {
+  overflow-y: auto;
+  height: 200px;
+}

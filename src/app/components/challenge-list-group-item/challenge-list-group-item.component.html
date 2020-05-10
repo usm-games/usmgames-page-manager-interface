@@ -1,0 +1,20 @@
+<a (click)="expand = !expand" class="list-group-item list-group-item-action flex-column align-items-start">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1 unselectable">{{challenge.title}}</h5>
+    <small *ngIf="!expand" class="unselectable">{{challenge.requirements.length}} requisitos - Publicado
+      el {{published | date}}</small>
+    <small *ngIf="expand">
+      <a class="participate" (click)="$event.stopPropagation(); $event.preventDefault(); select()">Participar</a>
+    </small>
+  </div>
+  <small class="text-muted">¿Qué hay que hacer?</small>
+  <p class="mb-1 unselectable">{{challenge.description}}</p>
+  <div *ngIf="expand">
+    <small class="text-muted">Requisitos:</small>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item unselectable" *ngFor="let requirement of challenge.requirements">
+        {{requirement.description}}
+      </li>
+    </ul>
+  </div>
+</a>

@@ -3,3 +3,10 @@
   border: solid 1px #272727 !important;
   color: aliceblue;
 }
+
+.info {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  margin: 0;
+}

@@ -1,0 +1,30 @@
+.list-group-item:hover {
+  background-color: #f6f6f6;
+}
+
+.list-group-item:active {
+  background-color: #eeeeee;
+}
+
+.list-group-flush .list-group-item {
+  background-color: transparent;
+}
+
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.participate {
+  color: dodgerblue;
+  cursor: pointer;
+}
+
+.participate:hover {
+  color: dodgerblue;
+  text-decoration: underline;
+}

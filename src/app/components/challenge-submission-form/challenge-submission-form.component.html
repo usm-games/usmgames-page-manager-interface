@@ -1,0 +1,105 @@
+<form [formGroup]="submissionForm" (ngSubmit)="submit()">
+  <div class="row">
+    <div class="col-4">
+      <app-challenge-display [challenge]="challenge" [evidences]="parsedEvidences"></app-challenge-display>
+    </div>
+    <div class="col-8">
+      <div class="col-12">
+        <label for="comment">Comentario</label>
+        <textarea id="comment" class="form-control" formControlName="comment"></textarea>
+        <div class="row">
+          <div class="col-8">
+            <div class="text-danger" *ngIf="comment.invalid && (comment.dirty || comment.touched)">
+              <span *ngIf="comment.errors.maxlength">El comentario debe ser de máximo 255 carácteres</span>
+            </div>
+          </div>
+          <div class="col-4">
+            <p
+              class="text-sm-right w-100"
+              [ngClass]="comment.errors?.maxlength ? 'text-danger' : 'text-muted'"
+            >{{comment.value.length}} / 255</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="row">
+          <div class="col-8">
+            <label>Evidencia</label>
+          </div>
+          <div class="col-4">
+            <button class="btn rounded-circle btn-primary" type="button" [disabled]="evidences.length >= 10 || loading"
+                    (click)="addEvidence()">+
+            </button>
+            <button type="button" class="btn rounded-circle btn-danger" [disabled]="evidences.length <= 0 || loading"
+                    (click)="removeEvidence()">
+              &times;
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12" formArrayName="evidence">
+            <div *ngIf="evidences.length  > 0; else noEvidence">
+              <div *ngFor="let i of rangeEvidence" [formGroupName]="i" [hidden]="i !== shownEvidenceIdx" class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-3">
+                      <span class="text-center seq-btn unselectable"
+                            [hidden]="shownEvidenceIdx <= 0"
+                            (click)="showPreviousEvidence()">
+                        <
+                      </span>
+                    </div>
+                    <span class="col-6 text-center text-muted">Evidencia {{shownEvidenceIdx + 1}}
+                      / {{evidences.length}}</span>
+                    <div class="col-3">
+                      <span class="text-center seq-btn unselectable"
+                            [hidden]="shownEvidenceIdx >= evidences.length - 1"
+                            (click)="showNextEvidence()">
+                        >
+                      </span>
+                    </div>
+                    <label class="col-12">
+                      Link
+                      <input type="text" style="resize: none" formControlName="url" class="form-control"
+                             placeholder="https://www.example.com/evidence/file.png" required>
+                    </label>
+                    <label class="col-12">
+                      Descripción
+                      <textarea type="text" style="resize: none" formControlName="description" class="form-control"
+                                placeholder="Foto/video/comprimido que tiene..." required></textarea>
+                    </label>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 text-danger mb-4"
+                         *ngIf="description.invalid && (description.dirty || description.touched)">
+                      <span>La descripción es obligatoria</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 text-danger mb-4" *ngIf="url.invalid && (url.dirty || url.touched)">
+                      <span *ngIf="url.errors.required">La URL no puede estar vacía</span>
+                      <span *ngIf="url.errors.pattern">La URL no es válida</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ng-template #noEvidence>
+              <div class="row">
+                <span class="col-12 text-center text-muted">No hay evidencias</span>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-12 text-center">
+      <button [disabled]="submissionForm.invalid || loading" class="btn btn-primary" style="width: 90%" type="submit">
+        <div *ngIf="loading; else waiting" class="spinner-border text-light"></div>
+        <ng-template #waiting><span>Subir participación</span></ng-template>
+      </button>
+    </div>
+  </div>
+</form>

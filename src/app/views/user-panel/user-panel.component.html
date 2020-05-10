@@ -7,27 +7,19 @@
         </div>
       </div>
     </div>
-    <div class="row mb-2">
-      <div class="col-12">
-        <div class="alert alert-info">
-          Esta aplicación se encuentra en estado Alfa. Si encuentra un error o tiene alguna consulta, por favor no dude
-          en poner un issue en nuestro <a href="https://github.com/usm-games/usmgames-page-manager/issues" target="_blank">repositorio de GitHub</a>
-        </div>
-      </div>
-    </div>
     <div class="row">
       <div *ngIf="user.roles.includes('administrator')" class="col-md-3 text-center">
-        <button type="button" class="btn btn-primary" (click)="openModal(createChallenge)">
+        <button type="button" class="btn btn-light" (click)="openModal(createChallenge)">
           Crear Desafío
         </button>
       </div>
       <div *ngIf="user.roles.includes('administrator')" class="col-md-3 text-center">
-        <button type="button" class="btn btn-primary">
+        <button type="button" class="btn btn-light" (click)="openModal(evaluateChallenge)">
           Evaluar desafíos
         </button>
       </div>
       <div [className]="(user.roles.includes('administrator') ? 'col-md-3' : 'col-md-6') + ' text-center'">
-        <button type="button" class="btn btn-primary">
+        <button type="button" class="btn btn-primary" (click)="openModal(submitChallenge)">
           Participar en desafío
         </button>
       </div>
@@ -58,3 +50,33 @@
     <app-challenge-create-form (submitted)="closeModal(modal)"></app-challenge-create-form>
   </div>
 </ng-template>
+<ng-template #evaluateChallenge let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Evaluar desafío</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal(modal)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-challenge-evaluation></app-challenge-evaluation>
+  </div>
+</ng-template>
+<ng-template #submitChallenge let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Subir participación en desafío</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal(modal)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-challenge-submission (submitted)="closeModal(modal)"></app-challenge-submission>
+  </div>
+</ng-template>
+<div class="row mb-2 info">
+  <div class="col-12">
+    <div class="alert alert-info">
+      Esta aplicación se encuentra en estado Alfa. Si encuentra un error o tiene alguna consulta, por favor no dude
+      en poner un issue en nuestro <a href="https://github.com/usm-games/usmgames-page-manager/issues" target="_blank">repositorio de GitHub</a>
+    </div>
+  </div>
+</div>

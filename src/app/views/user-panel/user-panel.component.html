@@ -14,7 +14,7 @@
         </button>
       </div>
       <div *ngIf="user.roles.includes('administrator')" class="col-md-3 text-center">
-        <button type="button" class="btn btn-light" (click)="openModal(evaluateChallenge)">
+        <button type="button" class="btn btn-light" [disabled]="true" (click)="openModal(evaluateChallenge)">
           Evaluar desafíos
         </button>
       </div>
@@ -53,7 +53,7 @@
 <ng-template #evaluateChallenge let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Evaluar desafío</h4>
-    <button type="button" class="close" aria-label="Close" [disabled]="true" (click)="closeModal(modal)">
+    <button type="button" class="close" aria-label="Close" (click)="closeModal(modal)">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>

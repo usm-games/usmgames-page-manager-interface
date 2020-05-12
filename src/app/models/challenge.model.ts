@@ -1,7 +1,7 @@
 import {WpChallenge} from './wp/wp-challenge.model';
 import {ChallengeRequirement} from './challenge-requirement.model';
 
-export type ChallengeType = 'art' | 'programming' | 'music';
+export type ChallengeType = 'art' | 'programming' | 'music' | 'modeling' | 'gamedev';
 
 export interface Challenge {
   id: number;

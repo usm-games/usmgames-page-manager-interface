@@ -10,9 +10,11 @@ import {environment} from '../../../environments/environment';
 })
 export class ChallengeService {
   public readonly types: {name: string, slug: ChallengeType, emoji: string}[] = [
-    {slug: 'art', name: 'Desafío de Arte y Animación', emoji: '🎨'},
+    {slug: 'art', name: 'Desafío de Arte 2D', emoji: '🎨'},
     {slug: 'programming', name: 'Desafío de Programación', emoji: '💻'},
-    {slug: 'music', name: 'Desafío de Música', emoji: '🎶'}
+    {slug: 'music', name: 'Desafío de Música', emoji: '🎶'},
+    {slug: 'modeling', name: 'Desafío de Arte 3D', emoji: '🎲'},
+    {slug: 'gamedev', name: 'Desafío de Desarrollo', emoji: '🎮'}
   ];
 
   constructor(private pm: PageMangerService) { }

@@ -1,17 +1,16 @@
 <div *ngIf="challenges$ | async as challenges; else loading">
-  <div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
-      <nav class="nav nav-pills nav-fill">
+  <div class="row ">
+    <!--div class="col-1"></div-->
+    <div class="col-12 ">
+      <nav class="nav nav-pills justify-content-center">
         <a class="nav-item nav-link" [title]="type.name" data-toggle="tooltip" data-placement="top" [ngClass]="selectedType === type ? 'active' : ''" *ngFor="let type of challengeTypes"
            (click)="selectedType = type">{{type.emoji}}</a>
       </nav>
     </div>
   </div>
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <app-challenge-list-group [challenges]="filterByType(selectedType.slug, challenges)" (selected)="selected.emit($event)"></app-challenge-list-group>
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 ">
+      <app-challenge-list-group [challenges]="filterByType(selectedType.slug, challenges)" (selected)="selected.emit($event)" ></app-challenge-list-group>
     </div>
   </div>
 </div>

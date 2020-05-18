@@ -7,4 +7,6 @@ html, body {
 
 html {
   background-image: url("~assets/imgs/background.png");
+  background-position: center;
+  background-size: cover;
 }

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -22,6 +22,13 @@ import { ChallengeEvaluationComponent } from './views/challenge-evaluation/chall
 import { SubmissionListGroupComponent } from './components/submission-list-group/submission-list-group.component';
 import { SubmissionsListComponent } from './components/submissions-list/submissions-list.component';
 import { ChallengeListGroupItemComponent } from './components/challenge-list-group-item/challenge-list-group-item.component';
+import { EvaluationFormComponent } from './components/evaluation-form/evaluation-form.component';
+
+import localeEs from '@angular/common/locales/es';
+import {registerLocaleData} from '@angular/common';
+
+
+registerLocaleData(localeEs);
 
 const routes: Routes = [
   {path: 'panel', component: UserPanelComponent, canActivate: [AuthGuard]},
@@ -45,7 +52,8 @@ const routes: Routes = [
     ChallengeEvaluationComponent,
     SubmissionListGroupComponent,
     SubmissionsListComponent,
-    ChallengeListGroupItemComponent
+    ChallengeListGroupItemComponent,
+    EvaluationFormComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +64,7 @@ const routes: Routes = [
     FontAwesomeModule
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'es-CL'},
     RedirectToPanel
   ],
   bootstrap: [AppComponent],

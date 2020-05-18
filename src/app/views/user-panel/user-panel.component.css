@@ -10,3 +10,9 @@
   width: 100%;
   margin: 0;
 }
+.row-panel-buttons button{
+  min-height: 80px;
+  background-color: #E80049;
+  border-color: rgb(238, 34, 99);
+  
+}

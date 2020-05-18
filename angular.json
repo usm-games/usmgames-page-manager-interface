@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "usm-page-manager"
+    }
+  },
+  "defaultProject": "usm-page-manager",
+  "cli": {
+    "analytics": false
+  }
 }

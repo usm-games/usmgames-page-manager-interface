@@ -1,0 +1,40 @@
+<a class="list-group-item list-group-item-action flex-column align-items-start">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1 unselectable">Entrega del {{submission.submitted | date: 'fullDate'}}</h5>
+        <small>
+          <a *ngIf="!submission.evaluation; else evaluated" class="participate" (click)="$event.stopPropagation(); $event.preventDefault(); select()">Evaluar</a>
+          <ng-template #evaluated>
+            <span class="text-success" *ngIf="submission.evaluation.approved">Aprobado</span>
+            <span class="text-danger" *ngIf="!submission.evaluation.approved">Rechazado</span>
+          </ng-template>
+        </small>
+      </div>
+    </div>
+    <div class="col-12 text-muted">
+      <span>
+        {{submission.submission.evidence.length}}
+      </span>
+      <span *ngIf="submission.submission.evidence.length !== 1">
+        evidencias
+      </span>
+      <span *ngIf="submission.submission.evidence.length === 1">
+        evidencia
+      </span>
+    </div>
+    <div class="col-12 text-left">
+      <small *ngIf="submission.submission.comment && submission.submission.comment !== ''; else noComments">
+        <span>
+          Comentario:
+        </span>
+        <span class="text-muted">
+          {{submission.submission.comment}}
+        </span>
+      </small>
+      <ng-template #noComments>
+        <span class="text-muted font-italic">No hay comentarios adjuntos a esta entrega</span>
+      </ng-template>
+    </div>
+  </div>
+</a>

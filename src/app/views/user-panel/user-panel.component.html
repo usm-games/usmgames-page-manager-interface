@@ -14,7 +14,7 @@
         </button>
       </div>
       <div *ngIf="user.roles.includes('administrator')" class="col-md-3 text-center">
-        <button type="button" class="btn btn-light" [disabled]="true" (click)="openModal(evaluateChallenge)">
+        <button type="button" class="btn btn-light" (click)="openModal(evaluateChallenge)">
           Evaluar desafíos
         </button>
       </div>

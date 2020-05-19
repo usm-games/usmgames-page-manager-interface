@@ -20,12 +20,13 @@ import { ChallengeListGroupComponent } from './components/challenge-list-group/c
 import { ChallengeDisplayComponent } from './components/challenge-display/challenge-display.component';
 import { ChallengeEvaluationComponent } from './views/challenge-evaluation/challenge-evaluation.component';
 import { SubmissionListGroupComponent } from './components/submission-list-group/submission-list-group.component';
-import { SubmissionsListComponent } from './components/submissions-list/submissions-list.component';
 import { ChallengeListGroupItemComponent } from './components/challenge-list-group-item/challenge-list-group-item.component';
 import { EvaluationFormComponent } from './components/evaluation-form/evaluation-form.component';
 
 import localeEs from '@angular/common/locales/es';
 import {registerLocaleData} from '@angular/common';
+import { SubmissionListGroupItemComponent } from './components/submission-list-group-item/submission-list-group-item.component';
+import { SubmissionDisplayComponent } from './components/submission-display/submission-display.component';
 
 
 registerLocaleData(localeEs);
@@ -51,9 +52,10 @@ const routes: Routes = [
     ChallengeDisplayComponent,
     ChallengeEvaluationComponent,
     SubmissionListGroupComponent,
-    SubmissionsListComponent,
     ChallengeListGroupItemComponent,
-    EvaluationFormComponent
+    EvaluationFormComponent,
+    SubmissionListGroupItemComponent,
+    SubmissionDisplayComponent
   ],
   imports: [
     BrowserModule,

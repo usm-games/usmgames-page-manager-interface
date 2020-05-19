@@ -1,1 +1,29 @@
-<p>submission-list-group works!</p>
+<div class="row">
+  <div class="col-12 mb">
+    <ul class="nav nav-pills nav-fill">
+      <li class="nav-item" *ngFor="let filter of filtersItems">
+        <a [routerLink]="" [className]="activeFilter === filter[0] ? 'nav-link active' : 'nav-link'" (click)="activeFilter = filter[0]">{{filter[1].name}}</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="challenge-list" *ngIf="submissions$ | async as submissions; else loading">
+  <div class="list-group">
+    <app-submission-list-group-item *ngFor="let submission of submissions" [submission]="submission"
+                                    (selected)="select(submission)"></app-submission-list-group-item>
+    <p class="text-muted text-center w-100" *ngIf="submissions.length === 0 && filterCode === 'pending'">
+      No quedan entregas pendientes para revisar
+    </p>
+    <p class="text-muted text-center w-100" *ngIf="submissions.length === 0 && filterCode === 'all'">
+      Todavía no hay participantes en esta desafío
+    </p>
+  </div>
+</div>
+<ng-template #loading>
+  <div class="row mt-2">
+    <div class="col-12 text-center">
+      <div class="spinner-border text-danger"></div>
+      <div class="text-danger">Cargando entregas...</div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-6">
+    <app-submission-display [submission]="submission"></app-submission-display>
+  </div>
+  <div class="col-6">
+    <app-challenge-display [challenge]="challenge"></app-challenge-display>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-12">
+    <label class="w-100">
+      <textarea class="form-control w-100" [(ngModel)]="comment"></textarea>
+    </label>
+  </div>
+  <div class="col-6 text-center">
+    <button class="btn btn-outline-success btn-lg w-100" [disabled]="loading" (click)="approve()">
+      Aprobar
+    </button>
+  </div>
+  <div class="col-6 text-center">
+    <button class="btn btn-outline-danger btn-lg w-100" [disabled]="loading" (click)="reject()">
+      Reprobar
+    </button>
+  </div>
+</div>

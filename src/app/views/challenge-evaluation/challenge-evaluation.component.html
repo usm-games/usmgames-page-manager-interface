@@ -1,1 +1,29 @@
-<p>challenge-evaluation works!</p>
+<div *ngIf="submission; else waitingSubmission">
+  <div class="row">
+    <div class="col-12">
+      <app-evaluation-form [challenge]="challenge" [submission]="submission"
+                           (evaluated)="goBack()"></app-evaluation-form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2">
+      <button [disabled]="challenge === null" (click)="goBack()">Volver</button>
+    </div>
+  </div>
+</div>
+<ng-template #waitingSubmission>
+  <div class="row">
+    <div class="col-5">
+      <app-challenges-list [interactive]="true" (selected)="challenge = $event"></app-challenges-list>
+    </div>
+    <div class="col-7">
+      <app-submission-list-group [challenge]="challenge"
+                                 *ngIf="challenge; else waitingChallenge"
+                                 (selected)="submission = $event"
+      ></app-submission-list-group>
+      <ng-template #waitingChallenge>
+        <p class="text-muted text-center">Selecciona un desafío de la lista a la izquierda</p>
+      </ng-template>
+    </div>
+  </div>
+</ng-template>

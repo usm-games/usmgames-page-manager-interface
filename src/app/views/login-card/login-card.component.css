@@ -1,5 +1,9 @@
 .container > .card {
   width: 100%;
+  
+}
+.card{
+  border-radius: 12px;
 }
 
 .jumbotron {
@@ -30,3 +34,5 @@
   -webkit-justify-content : center;
   justify-content : center;
 }
+
+

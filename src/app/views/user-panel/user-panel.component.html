@@ -1,30 +1,35 @@
 <div *ngIf="user$ | async as user; else loading">
   <div class="container-fluid">
     <div class="row">
-      <div class="card bg-dark mb-3">
+      <div class="card bg-dark mb-3 col-12 text-center">
         <div class="card-body">
-          <h4>{{user.display_name}} ({{user.roles.join(', ')}})</h4>
+          <h4>Bienvenid@: {{user.display_name}} ({{user.roles.join(', ')}})</h4>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div *ngIf="user.roles.includes('administrator')" class="col-md-3 text-center">
+    <div class="col col-panel-buttons  ">
+      <div *ngIf="user.roles.includes('administrator')" class="row-8 text-center align-items-center">
         <button type="button" class="btn btn-light" (click)="openModal(createChallenge)">
-          Crear Desafío
+          Crear Desafío 🆕
         </button>
       </div>
-      <div *ngIf="user.roles.includes('administrator')" class="col-md-3 text-center">
-        <button type="button" class="btn btn-light" (click)="openModal(evaluateChallenge)">
-          Evaluar desafíos
+      <div *ngIf="user.roles.includes('administrator')" class="row-6 text-center align-items-center">
+        <button type="button" class="btn btn-light" [disabled]="true" (click)="openModal(evaluateChallenge)">
+          Evaluar desafíos 👍
         </button>
       </div>
-      <div [className]="(user.roles.includes('administrator') ? 'col-md-3' : 'col-md-6') + ' text-center'">
+      <div *ngIf="user.roles.includes('administrator')" class="row-6 text-center align-items-center">
+        <button type="button" class="btn btn-light" [disabled]="true" (click)="openModal(evaluateChallenge)">
+          Registrar usuario 👽
+        </button>
+      </div>
+      <div class='row-6 text-center align-items-center'>
         <button type="button" class="btn btn-primary" (click)="openModal(submitChallenge)">
-          Participar en desafío
+          Participar en desafío 👾
         </button>
       </div>
-      <div [className]="(user.roles.includes('administrator') ? 'col-md-3' : 'col-md-6') + ' text-center'">
-        <button type="button" class="btn btn-primary" (click)="logout()">
+      <div class='row-4 text-center align-items-center '>
+        <button type="button" class="btn btn-primary" id='exit'(click)="logout()">
           Cerrar Sesión
         </button>
       </div>

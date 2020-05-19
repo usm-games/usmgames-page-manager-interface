@@ -11,7 +11,7 @@
       {{requirement.description}}
     </li>
   </ul>
-  <small class="text-muted">Evidencia</small>
+  <small class="text-muted" *ngIf="evidences">Evidencia</small>
   <ul class="list-group list-group-flush limit-scroll">
     <li class="list-group-item unselectable" *ngFor="let evidence of evidences">
       <span *ngIf="evidence.description !== '' && !isValidURL(evidence.url)">{{evidence.description}}</span>

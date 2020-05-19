@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -20,8 +20,16 @@ import { ChallengeListGroupComponent } from './components/challenge-list-group/c
 import { ChallengeDisplayComponent } from './components/challenge-display/challenge-display.component';
 import { ChallengeEvaluationComponent } from './views/challenge-evaluation/challenge-evaluation.component';
 import { SubmissionListGroupComponent } from './components/submission-list-group/submission-list-group.component';
-import { SubmissionsListComponent } from './components/submissions-list/submissions-list.component';
 import { ChallengeListGroupItemComponent } from './components/challenge-list-group-item/challenge-list-group-item.component';
+import { EvaluationFormComponent } from './components/evaluation-form/evaluation-form.component';
+
+import localeEs from '@angular/common/locales/es';
+import {registerLocaleData} from '@angular/common';
+import { SubmissionListGroupItemComponent } from './components/submission-list-group-item/submission-list-group-item.component';
+import { SubmissionDisplayComponent } from './components/submission-display/submission-display.component';
+
+
+registerLocaleData(localeEs);
 
 const routes: Routes = [
   {path: 'panel', component: UserPanelComponent, canActivate: [AuthGuard]},
@@ -44,8 +52,10 @@ const routes: Routes = [
     ChallengeDisplayComponent,
     ChallengeEvaluationComponent,
     SubmissionListGroupComponent,
-    SubmissionsListComponent,
-    ChallengeListGroupItemComponent
+    ChallengeListGroupItemComponent,
+    EvaluationFormComponent,
+    SubmissionListGroupItemComponent,
+    SubmissionDisplayComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +66,7 @@ const routes: Routes = [
     FontAwesomeModule
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'es-CL'},
     RedirectToPanel
   ],
   bootstrap: [AppComponent],

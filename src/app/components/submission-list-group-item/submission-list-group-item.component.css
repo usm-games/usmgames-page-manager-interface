@@ -1,0 +1,9 @@
+.participate {
+  color: dodgerblue;
+  cursor: pointer;
+}
+
+.participate:hover {
+  color: dodgerblue;
+  text-decoration: underline;
+}

@@ -8,6 +8,7 @@ import {Challenge} from '../../models/challenge.model';
 })
 export class ChallengeListGroupComponent implements OnInit {
   @Input() challenges!: Challenge[];
+  @Input() notSubmittedOnly = false;
   @Output() selected = new EventEmitter<Challenge>();
 
   constructor() { }

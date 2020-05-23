@@ -4,5 +4,5 @@
   </div>
 </div>
 <ng-template #waitingChallenge>
-  <app-challenges-list [interactive]="true" (selected)="challenge = $event"></app-challenges-list>
+  <app-challenges-list [notSubmittedOnly]="true" [interactive]="true" (selected)="challenge = $event"></app-challenges-list>
 </ng-template>

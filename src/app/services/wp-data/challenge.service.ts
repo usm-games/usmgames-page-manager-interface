@@ -3,24 +3,35 @@ import {Challenge, ChallengeType} from '../../models/challenge.model';
 import {PageMangerService} from './page-manger.service';
 import {Observable} from 'rxjs';
 import {Submission} from '../../models/submission.model';
-import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChallengeService {
-  public readonly types: {name: string, slug: ChallengeType, emoji: string}[] = [
-    {slug: 'art', name: 'Desafío de Arte 2D', emoji: '🎨'},
-    {slug: 'programming', name: 'Desafío de Programación', emoji: '💻'},
-    {slug: 'music', name: 'Desafío de Música', emoji: '🎶'},
-    {slug: 'modeling', name: 'Desafío de Arte 3D', emoji: '🎲'},
-    {slug: 'gamedev', name: 'Desafío de Desarrollo', emoji: '🎮'}
+  public readonly types: {name: string, slug: ChallengeType, emoji: string, defaultScore: number}[] = [
+    {slug: 'art2d', name: 'Desafío de Arte 2D', emoji: '🎨', defaultScore: 10},
+    {slug: 'programming', name: 'Desafío de Programación', emoji: '💻', defaultScore: 10},
+    {slug: 'music', name: 'Desafío de Música', emoji: '🎶', defaultScore: 10},
+    {slug: 'art3d', name: 'Desafío de Arte 3D', emoji: '🎲', defaultScore: 10},
+    {slug: 'gamedev', name: 'Desafío de Desarrollo', emoji: '🎮', defaultScore: 20}
   ];
+
+  public get typeBySlug(): Record<ChallengeType, {name: string, emoji: string, defaultScore: number}>  {
+    const types: any = {};
+    this.types.forEach(elem => {
+      types[elem.slug] = {
+        name: elem.name,
+        emoji: elem.emoji,
+        defaultScore: elem.defaultScore
+      };
+    });
+    return types as Record<ChallengeType, {name: string, emoji: string, defaultScore: number}> ;
+  }
 
   constructor(private pm: PageMangerService) { }
 
   create(challenge: Challenge): Promise<Challenge> {
-    challenge.notify = environment.production;
+    challenge.notify = true;
     return this.pm.post('challenges', challenge);
   }
 

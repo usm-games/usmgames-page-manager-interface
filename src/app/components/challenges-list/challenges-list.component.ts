@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Challenge, ChallengeType} from '../../models/challenge.model';
 import {ChallengeService} from '../../services/wp-data/challenge.service';
 import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-challenges-list',
@@ -10,6 +11,7 @@ import {Observable} from 'rxjs';
 })
 export class ChallengesListComponent implements OnInit {
   @Input() interactive = false;
+  @Input() notSubmittedOnly = false;
   @Output() selected = new EventEmitter<Challenge>();
 
   challenges$: Observable<Challenge[]>;

@@ -27,7 +27,7 @@ export class ChallengeCreateFormComponent implements OnInit {
         Validators.required,
         Validators.maxLength(255)
       ]),
-      type: new FormControl('art', [
+      type: new FormControl(this.challenges.types[0].slug, [
         Validators.required
       ]),
       requirements: new FormArray([])
@@ -65,6 +65,9 @@ export class ChallengeCreateFormComponent implements OnInit {
     this.loading = true;
     return this.challenges.create(challenge)
       .then(() => this.submitted.emit())
-      .catch(() => this.loading = false);
+      .catch((e) => {
+        console.error(e);
+        this.loading = false;
+      });
   }
 }

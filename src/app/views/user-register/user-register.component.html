@@ -1,0 +1,60 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-sm-12">
+      <form (submit)="register()" [formGroup]="registerForm">
+        <div class="row">
+          <div class="col-12 mb-4">
+            <label for="email">E-mail</label>
+            <input class="form-control" type="text" id="email" [formControl]="email" name="email">
+          </div>
+          <div class="col-12 mb-4">
+            <label for="displayName">Nombre y Apellido</label>
+            <input class="form-control" type="text" id="displayName" [formControl]="displayName" name="displayName">
+          </div>
+          <div class="col-12 mb-4">
+            <div class="row">
+              <div class="col-12">
+                <label>Es administrador</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 text-center">
+                <label for="isAdmin">Sí
+                  <input class="form-control" type="radio" id="isAdmin" [formControl]="isAdmin" [value]="true"
+                         name="isAdmin">
+                </label>
+              </div>
+              <div class="col-6 text-center">
+                <label for="isNotAdmin">No
+                  <input class="form-control" type="radio" id="isNotAdmin" [formControl]="isAdmin" [value]="false"
+                         name="isAdmin">
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="row">
+              <div class="col-12">
+                <button class="btn btn-primary w-100" [disabled]="loading || registerForm.invalid" type="submit">
+                  Registrar Usuario
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-sm-left text-danger text-center col-12"
+                   *ngIf="email.invalid && (email.dirty || email.touched)">
+                <p *ngIf="email.errors.required">*El correo electrónico es obligatorio</p>
+                <p *ngIf="email.errors.email">*Correo electrónico inválido</p>
+              </div>
+              <div class="text-sm-left text-danger text-center col-12"
+                   *ngIf="displayName.invalid && (displayName.dirty || displayName.touched)">
+                <p *ngIf="displayName.errors.required">*El nombre es obligatorio</p>
+                <p *ngIf="displayName.errors.minlength">*El nombre debe tener al menos 4 caracteres</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

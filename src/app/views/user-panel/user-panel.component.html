@@ -14,12 +14,12 @@
         </button>
       </div>
       <div *ngIf="user.roles.includes('administrator')" class="row-6 text-center align-items-center">
-        <button type="button" class="btn btn-light" [disabled]="true" (click)="openModal(evaluateChallenge)">
+        <button type="button" class="btn btn-light" (click)="openModal(evaluateChallenge)">
           Evaluar desafíos 👍
         </button>
       </div>
       <div *ngIf="user.roles.includes('administrator')" class="row-6 text-center align-items-center">
-        <button type="button" class="btn btn-light" [disabled]="true" (click)="openModal(evaluateChallenge)">
+        <button type="button" class="btn btn-light" (click)="openModal(registerUser)">
           Registrar usuario 👽
         </button>
       </div>
@@ -46,7 +46,7 @@
 </ng-template>
 <ng-template #createChallenge let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Crear Desafío</h4>
+    <h4 class="modal-title">Crear Desafío</h4>
     <button type="button" class="close" aria-label="Close" (click)="closeModal(modal)">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -57,7 +57,7 @@
 </ng-template>
 <ng-template #evaluateChallenge let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Evaluar desafío</h4>
+    <h4 class="modal-title">Evaluar desafío</h4>
     <button type="button" class="close" aria-label="Close" (click)="closeModal(modal)">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -66,9 +66,20 @@
     <app-challenge-evaluation></app-challenge-evaluation>
   </div>
 </ng-template>
+<ng-template #registerUser let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Registrar Usuario</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal(modal)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-user-register></app-user-register>
+  </div>
+</ng-template>
 <ng-template #submitChallenge let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Subir participación en desafío</h4>
+    <h4 class="modal-title">Subir participación en desafío</h4>
     <button type="button" class="close" aria-label="Close" (click)="closeModal(modal)">
       <span aria-hidden="true">&times;</span>
     </button>

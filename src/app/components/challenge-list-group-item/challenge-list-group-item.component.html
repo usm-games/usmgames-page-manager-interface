@@ -1,12 +1,39 @@
 <a (click)="expand = !expand" class="list-group-item list-group-item-action flex-column align-items-start">
-  <div class="d-flex w-100 justify-content-between">
-    <h5 class="mb-1 unselectable">{{challenge.title}}</h5>
-    <small *ngIf="!expand" class="unselectable">{{challenge.requirements.length}} requisitos - Publicado
-      el {{published | date}}</small>
-    <small *ngIf="expand">
-      <a class="participate" (click)="$event.stopPropagation(); $event.preventDefault(); select()">Participar</a>
-    </small>
-  </div>
+  <div class="row text-left">
+      <div class="col">
+        <h5 class="mb-1 unselectable"
+            *ngIf="!notSubmittedOnly || (notSubmittedOnly && !challenge.submitted_to)">{{challenge.title}}</h5>
+        <del><h5 class="mb-1 unselectable text-muted"
+                 *ngIf="notSubmittedOnly && !!challenge.submitted_to">{{challenge.title}}</h5></del>
+      </div>
+      <div class="col text-right">
+        <div class="row">
+          <div class="col">
+            <small class="unselectable w-100 text-right">Publicado el {{published | date}}</small>
+          </div>
+        </div>
+        <div class="row">
+          <small class="col" *ngIf="expand && notSubmittedOnly">
+            <a
+              *ngIf="!challenge.submitted_to"
+              class="participate text-right w-100"
+              (click)="$event.stopPropagation(); $event.preventDefault(); select()"
+            >
+              Subir entrega
+            </a>
+            <span class="text-dark text-right" *ngIf="challenge.submitted_to">Ya entregado</span>
+          </small>
+          <small class="col" *ngIf="expand && !notSubmittedOnly">
+            <a
+              class="participate text-right w-100"
+              (click)="$event.stopPropagation(); $event.preventDefault(); select()"
+            >
+              Seleccionar
+            </a>
+          </small>
+        </div>
+      </div>
+    </div>
   <small class="text-muted">¿Qué hay que hacer?</small>
   <p class="mb-1 unselectable">{{challenge.description}}</p>
   <div *ngIf="expand">

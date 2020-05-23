@@ -32,6 +32,12 @@ export class AuthService {
     return AuthService.auth;
   }
 
+  public async registerUser(email: string, displayName: string, isAdmin: boolean = false): Promise<User> {
+    return await this.pm.post<User>('users', {
+      email, display_name: displayName, admin: isAdmin
+    });
+  }
+
   public me(): Observable<User> {
     return this.pm.get<User>('auth/me');
   }

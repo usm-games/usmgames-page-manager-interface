@@ -10,7 +10,7 @@
   </div>
   <div class="row justify-content-center">
     <div class="col-12 col-sm-10 ">
-      <app-challenge-list-group [challenges]="filterByType(selectedType.slug, challenges)" (selected)="selected.emit($event)" ></app-challenge-list-group>
+      <app-challenge-list-group [notSubmittedOnly]="notSubmittedOnly" [challenges]="filterByType(selectedType.slug, challenges)" (selected)="selected.emit($event)" ></app-challenge-list-group>
     </div>
   </div>
 </div>

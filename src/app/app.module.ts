@@ -27,6 +27,7 @@ import localeEs from '@angular/common/locales/es';
 import {registerLocaleData} from '@angular/common';
 import { SubmissionListGroupItemComponent } from './components/submission-list-group-item/submission-list-group-item.component';
 import { SubmissionDisplayComponent } from './components/submission-display/submission-display.component';
+import { UserRegisterComponent } from './views/user-register/user-register.component';
 
 
 registerLocaleData(localeEs);
@@ -55,7 +56,8 @@ const routes: Routes = [
     ChallengeListGroupItemComponent,
     EvaluationFormComponent,
     SubmissionListGroupItemComponent,
-    SubmissionDisplayComponent
+    SubmissionDisplayComponent,
+    UserRegisterComponent
   ],
   imports: [
     BrowserModule,

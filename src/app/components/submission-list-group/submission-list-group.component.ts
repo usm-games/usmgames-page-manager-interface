@@ -3,8 +3,6 @@ import {Challenge} from '../../models/challenge.model';
 import {GetSubmissionOptions, SubmissionsService} from '../../services/wp-data/submissions.service';
 import {Observable} from 'rxjs';
 import {APISubmission} from '../../models/api-submission.model';
-import {Submission} from '../../models/submission.model';
-import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-submission-list-group',

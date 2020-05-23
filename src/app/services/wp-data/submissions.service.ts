@@ -43,13 +43,13 @@ export class SubmissionsService {
       .pipe(map((subs: any[]) => subs.map(SubmissionsService._parseAPISubmission)));
   }
 
-  approve(submission: APISubmission, comment: string) {
+  approve(submission: APISubmission, comment: string, points: number) {
     return this.pm.post(`challenges/${submission.challenge_id}/submissions/${submission.user_id}/evaluate`,
-      {approved: true, comment});
+      {approved: true, comment, points});
   }
 
   reject(submission: APISubmission, comment: string) {
     return this.pm.post(`challenges/${submission.challenge_id}/submissions/${submission.user_id}/evaluate`,
-      {approved: false, comment});
+      {approved: false, comment, points: 0});
   }
 }

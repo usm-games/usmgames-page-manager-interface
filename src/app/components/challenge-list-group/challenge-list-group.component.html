@@ -1,6 +1,6 @@
 <div class="challenge-list">
   <div class="list-group">
-    <app-challenge-list-group-item *ngFor="let challenge of challenges" [challenge]="challenge" (selected)="select(challenge)"></app-challenge-list-group-item>
+    <app-challenge-list-group-item *ngFor="let challenge of challenges" [notSubmittedOnly]="notSubmittedOnly" [challenge]="challenge" (selected)="select(challenge)"></app-challenge-list-group-item>
     <p class="text-muted text-center w-100" *ngIf="challenges.length === 0">No existen todavía desafíos en esta categoría... pero pronto habrán!</p>
   </div>
 </div>

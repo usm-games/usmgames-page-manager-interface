@@ -2,7 +2,7 @@ import {Submission} from './submission.model';
 
 export interface Evaluation {
   approved: boolean;
-  comment: boolean;
+  comment: string;
 }
 
 

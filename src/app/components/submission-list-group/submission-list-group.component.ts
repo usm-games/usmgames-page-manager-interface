@@ -11,6 +11,7 @@ import {APISubmission} from '../../models/api-submission.model';
 })
 export class SubmissionListGroupComponent implements OnInit, OnChanges {
   @Input() challenge: Challenge;
+  @Input() onlyNotEvaluated = true;
   @Output() selected = new EventEmitter<APISubmission>();
 
   filters: Record<string, {name: string, options: GetSubmissionOptions}> = {
@@ -53,6 +54,7 @@ export class SubmissionListGroupComponent implements OnInit, OnChanges {
   }
 
   select(submission: APISubmission) {
+    if (this.onlyNotEvaluated && !!submission.evaluation) return;
     this.selected.emit(submission);
   }
 }

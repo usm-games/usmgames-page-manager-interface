@@ -1,0 +1,28 @@
+<div class="challenge-list" *ngIf="submissions$ | async as submissions; else loading">
+  <div class="row">
+    <div class="col-5">
+    <div class="list-group">
+      <app-submission-list-group-item *ngFor="let submission of submissions" [submission]="submission" (selected)="selectedSubmission = submission"></app-submission-list-group-item>
+      <p class="text-muted text-center w-100" *ngIf="submissions.length === 0">
+        No has realizado entregas aún
+      </p>
+    </div>
+    </div>
+    <div class="col-7">
+      <app-submission-display *ngIf="selectedSubmission !== null; else noSubmission" [submission]="selectedSubmission"></app-submission-display>
+      <ng-template #noSubmission>
+        <p class="text-muted text-center w-100" *ngIf="submissions.length === 0">
+          Selecciona una entrega de la lista a la izquierda
+        </p>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<ng-template #loading>
+  <div class="row mt-2">
+    <div class="col-12 text-center">
+      <div class="spinner-border text-danger"></div>
+      <div class="text-danger">Cargando entregas...</div>
+    </div>
+  </div>
+</ng-template>

@@ -9,11 +9,11 @@ import {Submission} from '../../models/submission.model';
 })
 export class ChallengeService {
   public readonly types: {name: string, slug: ChallengeType, emoji: string, defaultScore: number}[] = [
-    {slug: 'art2d', name: 'Desafío de Arte 2D', emoji: '🎨', defaultScore: 10},
-    {slug: 'programming', name: 'Desafío de Programación', emoji: '💻', defaultScore: 10},
-    {slug: 'music', name: 'Desafío de Música', emoji: '🎶', defaultScore: 10},
-    {slug: 'art3d', name: 'Desafío de Arte 3D', emoji: '🎲', defaultScore: 10},
-    {slug: 'gamedev', name: 'Desafío de Desarrollo', emoji: '🎮', defaultScore: 20}
+    {slug: 'art2d', name: 'Desafío de Arte 2D', emoji: '🎨', defaultScore: 35},
+    {slug: 'programming', name: 'Desafío de Programación', emoji: '💻', defaultScore: 35},
+    {slug: 'music', name: 'Desafío de Música', emoji: '🎶', defaultScore: 35},
+    {slug: 'art3d', name: 'Desafío de Arte 3D', emoji: '🎲', defaultScore: 35},
+    {slug: 'gamedev', name: 'Desafío de Desarrollo', emoji: '🎮', defaultScore: 100}
   ];
 
   public get typeBySlug(): Record<ChallengeType, {name: string, emoji: string, defaultScore: number}>  {

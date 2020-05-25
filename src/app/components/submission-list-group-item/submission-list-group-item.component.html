@@ -1,10 +1,11 @@
-<a class="list-group-item list-group-item-action flex-column align-items-start">
+<a class="list-group-item list-group-item-action flex-column align-items-start" (click)="select()">
   <div class="row">
     <div class="col-12">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1 unselectable">Entrega del {{submission.submitted | date: 'fullDate'}}</h5>
         <small>
-          <a *ngIf="!submission.evaluation; else evaluated" class="participate" (click)="$event.stopPropagation(); $event.preventDefault(); select()">Evaluar</a>
+          <a *ngIf="!submission.evaluation; else evaluated" class="participate"
+             (click)="$event.stopPropagation(); $event.preventDefault(); select()">Evaluar</a>
           <ng-template #evaluated>
             <span class="text-success" *ngIf="submission.evaluation.approved">Aprobado</span>
             <span class="text-danger" *ngIf="!submission.evaluation.approved">Rechazado</span>
@@ -32,6 +33,19 @@
           {{submission.submission.comment}}
         </span>
       </small>
+    </div>
+    <div class="col-12 text-left">
+      <small *ngIf="submission.evaluation.comment && submission.evaluation.comment !== ''">
+        <span>
+          Comentario Evaluador:
+        </span>
+        <span class="text-muted">
+          {{submission.evaluation.comment}}
+        </span>
+      </small>
+      <span class="text-muted font-italic" *ngIf="!submission.submission.comment || submission.submission.comment === ''">
+        El evaluador no comentó la entrega
+      </span>
       <ng-template #noComments>
         <span class="text-muted font-italic">No hay comentarios adjuntos a esta entrega</span>
       </ng-template>

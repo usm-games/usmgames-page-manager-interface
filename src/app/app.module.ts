@@ -29,6 +29,8 @@ import { SubmissionListGroupItemComponent } from './components/submission-list-g
 import { SubmissionDisplayComponent } from './components/submission-display/submission-display.component';
 import { UserRegisterComponent } from './views/user-register/user-register.component';
 import { MySubmissionsComponent } from './views/my-submissions/my-submissions.component';
+import { ToastsComponent } from './components/toasts/toasts.component';
+import {NgbToastModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 registerLocaleData(localeEs);
@@ -59,7 +61,9 @@ const routes: Routes = [
     SubmissionListGroupItemComponent,
     SubmissionDisplayComponent,
     UserRegisterComponent,
-    MySubmissionsComponent
+    MySubmissionsComponent,
+    ToastsComponent,
+    ToastsComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,8 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgbToastModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es-CL'},

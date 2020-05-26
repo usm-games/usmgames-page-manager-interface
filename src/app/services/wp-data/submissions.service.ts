@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {User} from '../../models/user.model';
 import {map} from 'rxjs/operators';
 import {APISubmission} from '../../models/api-submission.model';
+import {ToastService} from '../toast.service';
 
 export interface GetSubmissionOptions {
   notEvaluated?: boolean;
@@ -14,7 +15,10 @@ export interface GetSubmissionOptions {
   providedIn: 'root'
 })
 export class SubmissionsService {
-  constructor(private pm: PageMangerService) {
+  constructor(
+    private pm: PageMangerService,
+    private toasts: ToastService
+    ) {
   }
 
   private static _parseAPISubmission(sub: any): APISubmission {
@@ -45,11 +49,19 @@ export class SubmissionsService {
 
   approve(submission: APISubmission, comment: string, points: number) {
     return this.pm.post(`challenges/${submission.challenge_id}/submissions/${submission.user_id}/evaluate`,
-      {approved: true, comment, points});
+      {approved: true, comment, points})
+      .then((data: any) => {
+        this.toasts.showSuccess('Se ha aprobado esta entrega');
+        return data;
+      });
   }
 
   reject(submission: APISubmission, comment: string) {
     return this.pm.post(`challenges/${submission.challenge_id}/submissions/${submission.user_id}/evaluate`,
-      {approved: false, comment, points: 0});
+      {approved: false, comment, points: 0})
+      .then((data: any) => {
+        this.toasts.showSuccess('Se ha rechazado esta entrega');
+        return data;
+      });
   }
 }

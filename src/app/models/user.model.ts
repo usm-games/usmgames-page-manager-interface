@@ -7,4 +7,5 @@ export interface User {
   username: string;
   display_name: string;
   roles: UserRoles[];
+  meta:{_gamipress_prestigio_points: number};
 }

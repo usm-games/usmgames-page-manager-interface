@@ -8,6 +8,7 @@ import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {UnauthorizedError} from '../../errors/unauthorized-error';
 import {JWTAuth} from '../../models/auth.model';
+import {ToastService} from '../toast.service';
 
 
 @Injectable({

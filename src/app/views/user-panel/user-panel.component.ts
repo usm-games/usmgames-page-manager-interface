@@ -7,6 +7,7 @@ import {User} from '../../models/user.model';
 import {catchError} from 'rxjs/operators';
 import {ForbiddenError} from '../../errors/forbidden-error';
 import {AppError} from '../../errors/app-error';
+import {ToastService} from '../../services/toast.service';
 
 @Component({
   selector: 'app-user-panel',
@@ -19,7 +20,8 @@ export class UserPanelComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private toasts: ToastService
   ) {
   }
 
